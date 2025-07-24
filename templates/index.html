@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Breast Cancer Detection</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f0f4f8;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #1f4e79;
+        }
+
+        .feature-img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 10px;
+        }
+
+        .result-section {
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .malignant {
+            background-color: #ffe5e5;
+            color: #c62828;
+        }
+
+        .benign {
+            background-color: #e0ffe5;
+            color: #2e7d32;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔬 Breast Cancer Detection</h1>
+
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-5 text-center">
+                <img src="/static/malignant_example.jpg" class="feature-img" alt="Malignant Cell">
+                <p><strong>Malignant</strong> (Cancerous Cell)</p>
+            </div>
+            <div class="col-md-5 text-center">
+                <img src="/static/benign_example.jpg" class="feature-img" alt="Benign Cell">
+                <p><strong>Benign</strong> (Non-Cancerous Cell)</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <form action="/predict" method="post">
+                <div class="row">
+                    {% set labels = [
+                    'Radius Mean', 'Texture Mean', 'Perimeter Mean', 'Area Mean',
+                    'Smoothness Mean', 'Compactness Mean', 'Concavity Mean',
+                    'Concave Points Mean', 'Symmetry Mean', 'Fractal Dimension Mean'
+                    ] %}
+                    {% for i in range(1, 11) %}
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">{{ labels[i-1] }}</label>
+                        <input type="number" step="any" name="feature{{ i }}" class="form-control" required>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary mt-3">🔍 Predict</button>
+                </div>
+            </form>
+        </div>
+
+        {% if prediction %}
+        <div
+            class="text-center mt-4 result-section {% if prediction == 'Malignant' %}malignant{% else %}benign{% endif %}">
+            <h3>🧪 Prediction: {{ prediction }}</h3>
+            {% if prediction == 'Malignant' %}
+            <img src="/static/malignant_example.jpg" class="feature-img result-image mt-3" alt="Malignant">
+            {% else %}
+            <img src="/static/benign_example.jpg" class="feature-img result-image mt-3" alt="Benign">
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        Made with ❤️ by Vidhi | Breast Cancer ML Web App
+    </footer>
+</body>
+
+</html>
