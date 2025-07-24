@@ -1,4 +1,4 @@
-# 🔬 Breast Cancer Detection Web App
+# 🔬 Breast Cancer Prediction
 
 This is a machine learning-powered web application that predicts whether a tumor is **benign** or **malignant** based on user-provided medical features. Built with Flask and trained using the Breast Cancer Wisconsin dataset.
 
@@ -50,14 +50,14 @@ This is a machine learning-powered web application that predicts whether a tumor
 
 ## 📁 Project Structure
 
-├── app.py # Flask backend
-├── model.pkl # Trained ML model
-├── templates/
-│ └── index.html # UI for inputs
-├── static/
-│ └── ui-screenshot.png # Screenshot of the app (add your image here)
-├── requirements.txt # Python dependencies
-└── README.md # Project overview
+| File/Folder        | Description                                 |
+|--------------------|---------------------------------------------|
+| `app.py`           | Flask backend                               |
+| `model.pkl`        | Trained ML model                            |
+| `templates/`       | Contains HTML files                         |
+| `index.html`       | Main UI for user input                      |
+| `static/`          | Stores static files like images             | |
+| `requirements.txt` | Python dependencies                         |
 
 ---
 
@@ -88,9 +88,10 @@ Once you enter the values, the app will classify the tumor as either:
 🔴 Malignant (Cancerous)
 
 ---
-# Sample Inputs (for testing)
-✅ Benign Example:
-    ```bash 
+## 🧪 Sample Inputs (for Testing)
+
+### ✅ Benign Example
+
     Radius Mean: 12.02
     Texture Mean: 14.53
     Perimeter Mean: 78.3
@@ -102,9 +103,8 @@ Once you enter the values, the app will classify the tumor as either:
     Symmetry Mean: 0.1928
     Fractal Dimension Mean: 0.0641
 
+### ❌ Malignant Example
 
-❌ Malignant Example:
-    ```bash
     Radius Mean: 17.99
     Texture Mean: 10.38
     Perimeter Mean: 122.8
